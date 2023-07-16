@@ -1,0 +1,14 @@
+.home-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .home-page table,
+  .home-page th,
+  .home-page td,
+  .home-page tr {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 5px 10px;
+  }
