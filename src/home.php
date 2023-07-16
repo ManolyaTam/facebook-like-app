@@ -13,17 +13,9 @@
     require('../utils/dbcon.php');
     echo "<div class='home-page'>";
     include('../utils/nav.php');
-    //   echo "
-    //   <br /><form action = $_SERVER[PHP_SELF] method='post'>
-    //     <label for='min' >min price</label>
-    //     <input name='min'type='number' id='min' required/><br/>
-    //     <label for='max'>max price</label>
-    //     <input name='max' id='max' type='number' required /><br />
-    //     <button type='submit' name='filter'>filter</button>
-    //     <a href='../pages/home.php'>reset </a>
+    
+    // TODO : filter
 
-    //   </form>  
-    //   ";
     echo "<h3>Your Feed</h3>
           <table>
             <tr>
