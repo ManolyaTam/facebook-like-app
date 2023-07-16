@@ -15,29 +15,27 @@
     <div class='login-page'>
         <h3>LOGIN</h3>
         <form action = $_SERVER[PHP_SELF] method = 'post'>
-            <label for='username'>username</label>        
-            <input name='username' id='username' />
+            <label for='email'>email</label>        
+            <input required name='email' type='email' id='email' />
             <br />
             <label for='password'>password</label>
-            <input name='password' id='password' type='password' />
+            <input required name='password' id='password' type='password' />
             <br />
             <button type='submit' name='login-submit'>login</button>
         </form>
     </div>";
 
     if(isset($_POST['login-submit'])){
-        $username = $_POST['username'];
+        $email = $_POST['email'];
         $password = $_POST['password'];
-        $sql = "select * from user where username='$username' and password='$password'";
+        $sql = "select * from user where email='".$email."' and password='".$password."'";
         $result = mysqli_query($con, $sql);
-        
-        //$row = mysqli_fetch_array($result);??
 
         if(mysqli_num_rows($result) > 0){
             header("Location: http://localhost/facebook-like-app/pages/feed.php");
         }
         else {
-            echo "username/password combination is wrong";
+            echo "email/password combination is wrong";
         }
     }
     ?>
