@@ -23,18 +23,21 @@
             <br />
             <button type='submit' name='login-submit'>login</button>
         </form>
+        <a href='./signup.php'>don't have an account?</a>
     </div>";
 
-    if(isset($_POST['login-submit'])){
+    if (isset($_POST['login-submit'])) {
         $email = $_POST['email'];
         $password = $_POST['password'];
-        $sql = "select * from user where email='".$email."' and password='".$password."'";
+        $sql = "select * from user where email='" . $email . "' and password='" . $password . "'";
         $result = mysqli_query($con, $sql);
 
-        if(mysqli_num_rows($result) > 0){
+        if (mysqli_num_rows($result) > 0) {
+            $row = mysqli_fetch_array($result);
+            setcookie('user_id', $row['user_id'], time() + 3600, '/');
             header("Location: http://localhost/facebook-like-app/pages/feed.php");
-        }
-        else {
+            exit();
+        } else {
             echo "email/password combination is wrong";
         }
     }

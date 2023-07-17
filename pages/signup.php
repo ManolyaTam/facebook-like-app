@@ -30,6 +30,7 @@
             <br />
             <button type='submit' name='signup-submit'>signup</button>
         </form>
+        <a href='./login.php'>already have an account?</a>
     </div>";
 
     if (isset($_POST['signup-submit'])) {
@@ -52,6 +53,7 @@
             $ok = mysqli_query($con, $sql);
             if ($ok) {
                 header("Location: http://localhost/facebook-like-app/pages/feed.php");
+                exit();
             } else {
                 echo "something went wrong";
             }
