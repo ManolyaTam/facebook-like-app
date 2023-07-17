@@ -49,7 +49,7 @@
             echo "email already used";
         } else {
             $sql = "insert into user(username, password, profile_photo, email)
-                    values ('" . $username . "', '" . $password . "', '" . $picture . "', '" . $email . "')";
+                    values ('" . $username . "', '" . $password . "', '" . $new_path . "', '" . $email . "')";
             $ok = mysqli_query($con, $sql);
             if ($ok) {
                 header("Location: http://localhost/facebook-like-app/pages/feed.php");

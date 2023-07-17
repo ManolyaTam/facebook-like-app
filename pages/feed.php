@@ -33,7 +33,11 @@
                 <th>body</th>
                 <th>date</th>
             </tr>
-        </div>";
+        ";
+    if (isset($_POST['create-post'])) {
+        header("Location: http://localhost/facebook-like-app/pages/create-post.php");
+        exit();
+    }
     if (isset($_POST['logout'])) {
         setcookie('user_id', '', time() - 3600, '/');
         header("Location: http://localhost/facebook-like-app/pages/login.php");
@@ -60,6 +64,12 @@
         echo    "<td> " . $row['date'] . "</td>";
         echo "</tr> ";
     }
+    echo "
+    </table>
+    <form method='post'>
+        <button type='submit' name='create-post'>create a post</button>
+    </form>
+    </div>"
     ?>
 </body>
 
