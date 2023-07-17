@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Signup</title>
+    <link rel="stylesheet" href="../style/style.css" />
     <link rel="stylesheet" href="../style/signup.css" />
 </head>
 
@@ -38,11 +39,14 @@
         $password = $_POST['password'];
         $email = $_POST['email'];
 
-        $name = $_FILES['picture']['name'];
-        $tmp_path = $_FILES['picture']['tmp_name'];
-        $new_path = "../img/" . $name;
-        move_uploaded_file($tmp_path, $new_path);
-
+        if (!isset($_FILES['picture']['name'] )|| $_FILES['picture']['name'] == '') {
+            $new_path = '../img/default.jpg';
+        } else {
+            $name = $_FILES['picture']['name'];
+            $tmp_path = $_FILES['picture']['tmp_name'];
+            $new_path = "../img/" . $name;
+            move_uploaded_file($tmp_path, $new_path);
+        }
         $sql = "select * from user where email = '$email'";
         $result = mysqli_query($con, $sql);
         if (mysqli_num_rows($result) > 0) {
