@@ -25,6 +25,12 @@
             <label for='email' >email</label>        
             <input required type='email' name='email' id='email' />
             <br />
+            <label for='gender'>gender</label>
+            <select id='gender'  name='gender'>
+                <option value='M'>Male</option>
+                <option value='F'>Female</option>
+            </select>
+            <br />
             <br />
             <label for='picture'>picture</label>        
             <input name='picture' id='picture' type='file' />
@@ -38,8 +44,9 @@
         $username = $_POST['username'];
         $password = $_POST['password'];
         $email = $_POST['email'];
+        $gender = $_POST['gender'];
 
-        if (!isset($_FILES['picture']['name'] )|| $_FILES['picture']['name'] == '') {
+        if (!isset($_FILES['picture']['name']) || $_FILES['picture']['name'] == '') {
             $new_path = '../img/default.jpg';
         } else {
             $name = $_FILES['picture']['name'];
@@ -52,8 +59,8 @@
         if (mysqli_num_rows($result) > 0) {
             echo "email already used";
         } else {
-            $sql = "insert into user(username, password, profile_photo, email)
-                    values ('" . $username . "', '" . $password . "', '" . $new_path . "', '" . $email . "')";
+            $sql = "insert into user(username, password, profile_photo, email, gender)
+                    values ('" . $username . "', '" . $password . "', '" . $new_path . "', '" . $email . "', '" . $gender . "')";
             $ok = mysqli_query($con, $sql);
             if ($ok) {
                 header("Location: http://localhost/facebook-like-app/pages/feed.php");

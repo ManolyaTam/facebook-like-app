@@ -20,7 +20,12 @@
     echo "<div class='home-page'>";
     include('../utils/nav.php');
 
-    // TODO : filter
+    echo"
+    <form action = $_SERVER[PHP_SELF] method='post'>
+        
+        <button type='submit' name='filter'>filter</button>
+    </form>
+    ";
 
     echo "
     <h3>Your Feed</h3>
@@ -33,6 +38,7 @@
                 <th>profile_photo </th>
                 <th>body</th>
                 <th>date</th>
+                <th>gender</th>
             </tr>
         ";
     if (isset($_POST['create-post'])) {
@@ -46,7 +52,7 @@
     }
     if (!isset($_POST['filter'])) {
         $sql = "
-            select username, profile_photo, body, date
+            select username, profile_photo, body, date, gender  
             from posts, user
             where posts.user_id = user.user_id
             order by date desc
@@ -54,11 +60,17 @@
     }
     $result = mysqli_query($con, $sql);
     while ($row = mysqli_fetch_array($result)) {
+        if($row['gender'] == 'F'){
+            $gender = 'Female';
+        }else{
+            $gender = 'Male';
+        }
         echo "<tr>";
         echo    "<td> " . $row['username'] . "</td>";
         echo    "<td> <img width=50 src='" . $row['profile_photo'] . "' alt='" . $row['profile_photo'] . "'/></td>";
         echo    "<td> " . $row['body'] . "</td>";
         echo    "<td> " . $row['date'] . "</td>";
+        echo    "<td> " . $gender . "</td>";
         echo "</tr> ";
     }
     echo "
