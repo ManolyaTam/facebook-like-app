@@ -50,10 +50,6 @@
             where posts.user_id = user.user_id
             order by date desc
         ";
-    } else {
-        // $min = $_POST['min'];
-        // $max = $_POST['max'];
-        // $sql = "select * from books where price >= $min and price <= $max";
     }
     $result = mysqli_query($con, $sql);
     while ($row = mysqli_fetch_array($result)) {
